@@ -2,5 +2,25 @@
 
 Reddis 
 
+Installation
+
+sudo apt-get update
+sudo apt-get install redis-server
+Lancer le serveur :
+redis-server
+Lancer l’interface de Redis :
+redis-cli
+Configuration : 
+config get * 
+Affiche les paires clés valeurs de configuration avec les lignes en dessous des autres, on utilise :
+	config get ‘nom clé’ Affiche la valeur d’une clé de configuration.
+Pour modifier une valeur on utilise :
+	config set ‘nom clé’ ‘valeur_modifié’  
+Effectuer des sauvegardes :
+save
+
+
+
 Commandes de bases
+
 set cle "valeur" -> Créer une valeur get cle -> récupère et affiche la valeur de cle mset cle1 val1 cle2 val2 -> créer plusieurs clés en même temps mget cle1 cle2 -> récupère et affiche plusieurs valeus en même temps rename val nouv_nom -> renomme val avec le nouveau nom append cle "val" -> ajoute val à la fin de la valeur => "Hello val" fullshall -> supprime toutes les infos de la bd incr cle -> incrémente à la val (int) de cle [ 1 passe à 2] decr cle -> décrémente la val (int) de cle expire cle 100 -> faire expirer une clé au bout de 100s ttl cle -> "Time To Live" de la clé 50 : moitié de la vie -50 : expiré Ensemble sadd nomlist "val" -> ajoute une valeur à la liste (si la liste n'existe pas, elle est automatiquement créée) smembers nomlist -> affiche toutes les valeurs de la liste srem nomlist "val" -> supprime val Liste lpush nomlist cle -> ajoute une cle (transformé en valeur) dans la liste (si la liste n'existe pas, elle est automatiquement créée) lrange nomlist 0 10 -> affiche tous les éléments de 0 à 10 de la liste linsert nomlist before "val1" "val2" -> insert val2 juste avant val1 dans la liste lrem nomlist 0 val -> supprime la première occurrence de val Ensemble trié zadd list 10 "val1" [20 "val2"] -> Ajoute val avec un poids de 10 à val1 (on peut ajouter plusieurs valeurs en même temps) zrange list 0 -1 -> affiche tous les éléments de l'ensemble zrem list "val" -> supprime val Hash (comme des dico de dico) hset user cle1 "val1" cle2 "val2" -> user a plusieurs clé/val en guise de valeur hget user cle1 => "val1" "val2" hgetall user => "cle1" "val1" "cle2" "val2" hvals user => "val1" "val2" hkeys user => "cle1" "cle2" hdel cle1 -> supprime cle1 et val1 del user -> supprime l'entièreté de user
